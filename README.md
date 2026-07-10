@@ -5,7 +5,7 @@ remain separate: `onoffmypc-app` contains the API, `onoffmypc-web` the web UI
 and flasher, `onoffmypc-mobile` the native clients, and `onoffmypc-firmware` the
 ESP32 source and build pipeline.
 
-This repository publishes the pre-built firmware binaries. Download the latest from the [Releases](../../releases) page and flash it to your ESP32 — no toolchain or source build required.
+This repository publishes the pre-built firmware binaries. Download the latest from the [Releases](https://github.com/onoffmypc/onoffmypc-release/releases) page and flash it to your ESP32 — no toolchain or source build required.
 
 ## Features
 
@@ -42,7 +42,7 @@ Connect D34 to the PC's power LED header (3.3 V max).
 
 ## Flashing
 
-1. Download the latest **`onoffmypc-firmware-<version>.bin`** from the [Releases](../../releases) page. This is the complete image (bootloader, partition table, and application in one file).
+1. Download the latest **`onoffmypc-firmware-<version>.bin`** from the [Releases](https://github.com/onoffmypc/onoffmypc-release/releases) page. This is the complete image (bootloader, partition table, and application in one file).
 
 2. (Optional) Verify your download against the published checksums:
 
