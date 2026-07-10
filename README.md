@@ -1,6 +1,9 @@
-# OnOffMyPC — ESP32 Firmware
+# OnOffMyPC — Public release artifacts
 
-Control your PC remotely using an ESP32 microcontroller and the [OnOffMyPC](https://onoffmypc.com) service.
+This public repository publishes stable OnOffMyPC artifacts. Source projects
+remain separate: `onoffmypc-app` contains the API, `onoffmypc-web` the web UI
+and flasher, `onoffmypc-mobile` the native clients, and `onoffmypc-firmware` the
+ESP32 source and build pipeline.
 
 This repository publishes the pre-built firmware binaries. Download the latest from the [Releases](../../releases) page and flash it to your ESP32 — no toolchain or source build required.
 
@@ -13,6 +16,9 @@ This repository publishes the pre-built firmware binaries. Download the latest f
 - Browser-based WiFi setup — no config files to edit
 - Automatic reconnection after a network outage or router reboot
 - LED status indicator (fast blink = connecting to WiFi, slow blink = connecting to the service, solid = online)
+
+Device acknowledgements mean a command was received or initiated; they do not
+guarantee that the controlled PC reached the requested state.
 
 ## Requirements
 
@@ -62,7 +68,14 @@ Connect D34 to the PC's power LED header (3.3 V max).
 
    The LED blinks while connecting and stays solid once online.
 
-To reconfigure later, send `r` over the serial monitor to factory-reset and reopen the setup network.
+To reconfigure later, send `r` over the serial monitor to factory-reset and
+reopen the setup network. Current firmware uses a short-lived pairing code by
+default; manual device ID/token entry is an advanced fallback.
+
+## Artifact verification
+
+Verify the matching checksum file before flashing. Checksums detect corruption,
+but are not a substitute for a future device-verified firmware signature.
 
 ## License
 
