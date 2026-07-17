@@ -3,7 +3,9 @@
 This public repository publishes stable OnOffMyPC artifacts. Source projects
 remain separate: `onoffmypc-app` contains the API, `onoffmypc-web` the web UI
 and flasher, `onoffmypc-mobile` the native clients, and `onoffmypc-firmware` the
-ESP32 source and build pipeline.
+ESP32 source and build pipeline. `onoffmypc-design` owns their shared visual
+tokens, product-state presentation, assets, accessibility rules, and UX writing
+guidance; this artifact repository has no runtime UI dependency.
 
 This repository publishes the pre-built firmware binaries. Download the latest from the [Releases](https://github.com/onoffmypc/onoffmypc-release/releases) page and flash it to your ESP32 — no toolchain or source build required.
 
@@ -13,9 +15,9 @@ This repository publishes the pre-built firmware binaries. Download the latest f
 - Power off and reset via GPIO-controlled transistors
 - Room temperature and humidity monitoring (DHT22)
 - Secure, encrypted connection to the OnOffMyPC service
-- Browser-based WiFi setup — no config files to edit
+- Browser-based Wi-Fi setup — no config files to edit
 - Automatic reconnection after a network outage or router reboot
-- LED status indicator (fast blink = connecting to WiFi, slow blink = connecting to the service, solid = online)
+- LED status indicator (fast blink = connecting to Wi-Fi, slow blink = connecting to the service, solid = online)
 
 Device acknowledgements mean a command was received or initiated; they do not
 guarantee that the controlled PC reached the requested state.
@@ -60,17 +62,23 @@ Connect D34 to the PC's power LED header (3.3 V max).
 
 ## First-time setup
 
-1. **Add a device** at [app.onoffmypc.com](https://app.onoffmypc.com). Copy the Device ID and Token shown — the token is shown only once.
+1. **Add a device** at [app.onoffmypc.com](https://app.onoffmypc.com), open that
+   device, and request its short-lived **pairing code**.
 
-2. **Power on the ESP32.** On first boot it creates a WiFi network named **`OnOffMyPC-XXXXXX`**. Connect to it with your phone or laptop; a setup page should open automatically (or visit `http://192.168.4.1`).
+2. **Power on the ESP32.** On first boot it creates a Wi-Fi network named
+   **`OnOffMyPC-XXXXXX`**. Connect with the setup-network password shown in the
+   ESP Web Tools or serial output. The setup page should open automatically;
+   otherwise visit `http://192.168.4.1`.
 
-3. **Enter your details:** your WiFi name and password, the Device ID and Token from step 1, and your PC's MAC address for Wake-on-LAN (run `ipconfig /all` on Windows or `ip link` on Linux/macOS). Save — the device restarts and connects.
+3. **Enter the pairing code**, your Wi-Fi details, your PC's MAC address for
+   Wake-on-LAN, and the six-digit setup PIN shown in the serial output. Save the
+   form; the device restarts and begins connecting. Manual Device ID/token entry
+   remains available under **Advanced**.
 
    The LED blinks while connecting and stays solid once online.
 
 To reconfigure later, send `r` over the serial monitor to factory-reset and
-reopen the setup network. Current firmware uses a short-lived pairing code by
-default; manual device ID/token entry is an advanced fallback.
+reopen the setup network.
 
 ## Artifact verification
 
